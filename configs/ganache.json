@@ -1,0 +1,12 @@
+{
+    "network": "ganache",
+    "contract_address": "",
+    "owner_address": "0x692b340915Eb661CB3AD878Db4ca44B57Ea8Dc2a",
+    "owner_mnemonic": "level venue crew odor attack uncover flush steak club lumber pupil nerve",
+    "contract": {
+        "name": "Poly721",
+        "ticker": "POLY721",
+        "description": "https://ipfs.io/ipfs/-"
+    },
+    "provider": "http://localhost:7545"
+}
