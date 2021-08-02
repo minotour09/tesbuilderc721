@@ -7,9 +7,9 @@ const fs = require('fs')
 
 async function main() {
   try {
-    const configs = JSON.parse(fs.readFileSync('./deployed/' + argv._ + '.json').toString())
+    const configs = JSON.parse(fs.readFileSync('./configs/' + argv._ + '.json').toString())
     const provider = new HDWalletProvider(
-      configs.proxy_mnemonic,
+      configs.owner_mnemonic,
       configs.provider
     );
     const web3Instance = new web3(provider);
@@ -26,8 +26,6 @@ async function main() {
     console.log('|* NFT DETAILS *|')
     console.log('>', name, symbol, '<');
     console.log('--')
-    const approved = await nftContract.methods.isApprovedForAll(configs.owner_address, configs.proxy_address).call();
-    console.log('Is proxy approved: ' + approved)
     let ended = false
     let i = 0;
     try {

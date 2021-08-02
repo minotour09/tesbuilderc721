@@ -9,7 +9,7 @@ const argv = require('minimist')(process.argv.slice(2));
 const fs = require('fs')
 
 async function main() {
-  const configs = JSON.parse(fs.readFileSync('./deployed/' + argv._ + '.json').toString())
+  const configs = JSON.parse(fs.readFileSync('./configs/' + argv._ + '.json').toString())
   if (configs.owner_mnemonic !== undefined) {
     const provider = new HDWalletProvider(
       configs.owner_mnemonic,

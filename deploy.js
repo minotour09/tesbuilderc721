@@ -33,8 +33,7 @@ async function deploy() {
                 const address = foot[0]
                 console.log('Deployed address is: ' + address)
                 configs.contract_address = address
-                console.log('Saving address in config file..')
-                fs.writeFileSync('./deployed/' + argv._ + '.json', JSON.stringify(configs, null, 4))
+                console.log('Remember to save the address in config file..')
                 console.log('--')
             }
 
