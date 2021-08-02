@@ -52,6 +52,10 @@ contract Poly721 is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         return contract_ipfs_json;
     }
 
+    function totalSupply() public view returns (string memory) {
+        return _tokenIdCounter.current();
+    }
+
     function nftExists(string memory tokenHash) internal view returns (bool) {
         address owner = _creatorsMapping[tokenHash];
         return owner != address(0);
