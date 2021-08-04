@@ -33,6 +33,7 @@ Let's comment what's inside:
     - `ticker`: The ticker of the token, this will be visible just on PolygonScan
     - `description`: An IPFS object with all the description, this is required by OpenSea and you will be able to change the informations even later and you can find an example here: https://ipfs.io/ipfs/bafkreibqsvjbkkqkrn53htg2dpm5msld3xdqt4p6gsqkmfwvawtgawz6te
 - `provider`: You node provider, we suggest Figment DataHub (https://datahub.figment.io/)
+- `baseURI`: The URI from where the token will be fetched, can be IPFS or your API server
 
 ## Deploy the contract
 
