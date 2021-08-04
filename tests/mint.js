@@ -30,6 +30,14 @@ async function main() {
     console.log('>', name, symbol, '<')
     console.log('Owner is', owner)
 
+    // Add more standard metadata, here's the documentation: https://docs.opensea.io/docs/metadata-standards
+    const nft = {
+      "name": "Herbie Starbelly",
+      "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
+      "image": "https://storage.googleapis.com/opensea-prod.appspot.com/creature/50.png",
+      "created_at": new Date().getTime()
+    }
+    
     try {
       console.log('Trying minting NFT...')
       const result = await nftContract.methods

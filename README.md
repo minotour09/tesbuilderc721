@@ -12,7 +12,7 @@ If you don't know what IPFS is start from here: https://ipfs.io/
 To start develop your own ERC-721 you will need a couple of tools:
 - NodeJS: https://nodejs.org/en/
 - Ganache (which is used to create a local blockchain): https://www.trufflesuite.com/ganache
-
+- IPFS: to create the NFTs and uploading it to the distributed file system
 
 So we can install the dependencies:
 ```
