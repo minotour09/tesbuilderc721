@@ -14,8 +14,10 @@ module.exports = async (deployer, network) => {
   const contractName = process.env.NAME;
   const contractTicker = process.env.TICKER;
   const contractDescription = process.env.DESCRIPTION;
+  const publicMinting = process.env.PUBLIC;
+  const baseURI = process.env.BASEURI;
 
-  await deployer.deploy(Poly721, proxyRegistryAddress, contractName, contractTicker, contractDescription, { gas: 5000000 });
+  await deployer.deploy(Poly721, proxyRegistryAddress, contractName, contractTicker, contractDescription, publicMinting, baseURI, { gas: 5000000 });
   const contract = await Poly721.deployed();
   console.log('CONTRACT ADDRESS IS*||*' + contract.address + '*||*')
 };

@@ -37,8 +37,10 @@ async function main() {
         .send({ from: configs.owner_address });
       console.log("NFT minted! Transaction: " + result.transactionHash);
       console.log(result)
+      process.exit();
     } catch (e) {
       console.log(e)
+      process.exit();
     }
   } else {
     console.log('Please provide `owner_mnemonic` first.')

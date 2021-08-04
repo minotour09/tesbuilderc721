@@ -18,21 +18,27 @@ contract Poly721 is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     mapping (string => uint256) private _tokenIdsToHashMapping;
     address openseaProxyAddress;
     string public contract_ipfs_json;
+    string private baseURI;
+    bool PUBLIC_MINTING = true;
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIdCounter;
 
-    constructor(
+    constructor (
         address _openseaProxyAddress,
         string memory _name,
         string memory _ticker,
-        string memory _contract_ipfs
-    ) public ERC721(_name, _ticker) {
+        string memory _contract_ipfs,
+        bool _public_minting,
+        string memory _base_uri
+    ) ERC721(_name, _ticker) {
         openseaProxyAddress = _openseaProxyAddress;
         contract_ipfs_json = _contract_ipfs;
+        PUBLIC_MINTING = _public_minting;
+        baseURI = _base_uri;
     }
 
-    function _baseURI() internal pure override returns (string memory) {
-        return "https://ipfs.io/ipfs/";
+    function _baseURI() internal override view returns (string memory) {
+        return baseURI;
     }
 
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
@@ -52,7 +58,7 @@ contract Poly721 is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         return contract_ipfs_json;
     }
 
-    function totalSupply() public view returns (string memory) {
+    function totalSupply() public view returns (uint256) {
         return _tokenIdCounter.current();
     }
 
@@ -73,20 +79,26 @@ contract Poly721 is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         return _creatorsMapping[hash];
     }
 
-    function canMint(string memory tokenURI) internal view returns (bool){
-        require(!nftExists(tokenURI), "Poly721: Trying to mint existent nft");
-        return true;
+    function canMint(string memory _tokenURI) internal view returns (bool){
+        bool canReallyMint = true;
+        // Check if tokenURI doesn't exists preventing double minting.
+        require(!nftExists(_tokenURI), "Poly721: Trying to mint existent nft");
+        // Check if minting is public or not, if it's not public onlye the owner can mint.
+        if(PUBLIC_MINTING == false && msg.sender != owner()){
+            canReallyMint = false;
+        }
+        return canReallyMint;
     }
 
     /*
         This method will first mint the token to the address.
     */
-    function mintNFT(string memory tokenURI) public returns (uint256) {
-        require(canMint(tokenURI), "Poly721: Can't mint token");
-        uint256 tokenId = mintTo(msg.sender, tokenURI);
-        _creatorsMapping[tokenURI] = msg.sender;
-        _tokenIdsMapping[tokenId] = tokenURI;
-        _tokenIdsToHashMapping[tokenURI] = tokenId;
+    function mintNFT(string memory _tokenURI) public returns (uint256) {
+        require(canMint(_tokenURI), "Poly721: Can't mint token");
+        uint256 tokenId = mintTo(msg.sender, _tokenURI);
+        _creatorsMapping[_tokenURI] = msg.sender;
+        _tokenIdsMapping[tokenId] = _tokenURI;
+        _tokenIdsToHashMapping[_tokenURI] = tokenId;
         return tokenId;
     }
 

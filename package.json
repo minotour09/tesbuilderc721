@@ -6,9 +6,8 @@
   "scripts": {
     "extract-abi": "truffle-export-abi -d ./build/contracts/ -o ./abi.json -v",
     "test": "truffle test",
-    "test:test": "node tests/test.js",
+    "test:details": "node tests/details.js",
     "test:mint": "node tests/mint.js",
-    "test:proxy": "node tests/proxy_mint.js",
     "deploy": "node deploy.js",
     "deploy:debug": "node deploy.js --debug=true"
   },

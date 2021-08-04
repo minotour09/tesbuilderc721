@@ -1837,6 +1837,16 @@
         "internalType": "string",
         "name": "_contract_ipfs",
         "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "_public_minting",
+        "type": "bool"
+      },
+      {
+        "internalType": "string",
+        "name": "_base_uri",
+        "type": "string"
       }
     ],
     "stateMutability": "nonpayable",
@@ -2250,6 +2260,20 @@
     "constant": true
   },
   {
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "constant": true
+  },
+  {
     "inputs": [
       {
         "internalType": "string",
@@ -2313,7 +2337,7 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "tokenURI",
+        "name": "_tokenURI",
         "type": "string"
       }
     ],
