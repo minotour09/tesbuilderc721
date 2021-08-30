@@ -6,3 +6,5 @@ node_modules/
 .nvmrc
 eth/deploy.sh
 yarn-error.log
+configs/*
+!configs/ganache.json
